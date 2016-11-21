@@ -1,0 +1,53 @@
+body, html, article{
+  height:100%;
+  width: 100%;
+}
+
+article{
+  background:#000000;
+  border:1px solid red;
+}
+header{
+	height:40%;
+}
+
+.switchbox{
+	width: 9%;
+	height: 5%;
+	background-color: white;
+}
+
+.switch{
+	border:1px solid black;
+	width:50%;
+	height:98%;
+	background-color: red;
+}
+a:active{
+	
+}
+
+section{
+	height:60%;
+}
+.colorButtons{
+  width:80%;
+  height:10%;
+  margin-bottom: 2%;
+}
+
+div.green{
+  background-color: hsl(105, 100%, 50%); 
+}
+
+div.red{
+  background-color: hsl(0, 100%, 55%);  
+}
+
+.yellow{
+  background-color: hsl(60, 100%, 60%); 
+}
+
+.blue{
+  background-color: hsl(240, 100%, 50%); 
+}
