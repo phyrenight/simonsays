@@ -1,53 +1,43 @@
-body, html, article{
-  height:100%;
-  width: 100%;
-}
+body, html, article {
+  height: 100%;
+  width: 100%; }
 
-article{
-  background:#000000;
-  border:1px solid red;
-}
-header{
-	height:40%;
-}
+article {
+  background: #000000;
+  border: 1px solid red; }
 
-.switchbox{
-	width: 9%;
-	height: 5%;
-	background-color: white;
-}
+header {
+  height: 40%; }
 
-.switch{
-	border:1px solid black;
-	width:50%;
-	height:98%;
-	background-color: red;
-}
-a:active{
-	
-}
+.switchbox {
+  width: 9%;
+  height: 5%;
+  background-color: white; }
 
-section{
-	height:60%;
-}
-.colorButtons{
-  width:80%;
-  height:10%;
-  margin-bottom: 2%;
-}
+.switch {
+  border: 1px solid black;
+  width: 50%;
+  height: 98%;
+  background-color: red; }
 
-div.green{
-  background-color: hsl(105, 100%, 50%); 
-}
+section {
+  height: 60%; }
 
-div.red{
-  background-color: hsl(0, 100%, 55%);  
-}
+.colorButtons {
+  width: 80%;
+  height: 10%;
+  margin-bottom: 2%; }
 
-.yellow{
-  background-color: hsl(60, 100%, 60%); 
-}
+div.green {
+  background-color: #40ff00; }
 
-.blue{
-  background-color: hsl(240, 100%, 50%); 
-}
+div.red {
+  background-color: #ff1a1a; }
+
+.yellow {
+  background-color: #ffff33; }
+
+.blue {
+  background-color: blue; }
+
+/*# sourceMappingURL=styles.css.map */
