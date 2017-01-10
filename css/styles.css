@@ -18,7 +18,7 @@ header {
   border: 1px solid black;
   width: 50%;
   height: 98%;
-  background-color: red; }
+  background-color: #FF0000; }
 
 section {
   height: 60%; }
@@ -29,15 +29,15 @@ section {
   margin-bottom: 2%; }
 
 div.green {
-  background-color: #40ff00; }
+  background-color: #00BB00; }
 
 div.red {
-  background-color: #ff1a1a; }
+  background-color: #BB0000; }
 
 .yellow {
-  background-color: #ffff33; }
+  background-color: #BBBB00; }
 
 .blue {
-  background-color: blue; }
+  background-color: #0000BB; }
 
 /*# sourceMappingURL=styles.css.map */
