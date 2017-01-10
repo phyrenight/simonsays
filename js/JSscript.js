@@ -1,3 +1,55 @@
+(function(){
+  var green = document.getElementById('green');
+  var red = document.getElementById('red');
+  var yellow = document.getElementById('yellow');
+  var blue = document.getElementById('blue');
+
+  blue.addEventListener('mousedown', lightUpColor, false);
+  blue.addEventListener('mouseup', backToNormal, false);
+  red.addEventListener('mousedown', lightUpColor, false);
+  red.addEventListener('mouseup', backToNormal, false);
+  yellow.addEventListener('mousedown', lightUpColor, false);
+  yellow.addEventListener('mouseup', backToNormal, false)
+  green.addEventListener('mousedown', lightUpColor, false);
+  green.addEventListener('mouseup', backToNormal, false);
+  
+  function backToNormal(){
+    /*
+      changes the button color back to normal
+    */
+    if(this.id == 'green'){
+      green.style.backgroundColor = '#00BB00';
+    }
+    else if(this.id == 'red'){
+      red.style.backgroundColor = '#BB0000';
+    }
+    else if(this.id == 'yellow'){
+      yellow.style.backgroundColor = '#BBBB00';
+    }
+    else if(this.id == 'blue'){
+      blue.style.backgroundColor = '#0000BB';
+    }
+  }
+
+  function lightUpColor(){
+    /*
+      Used to light up the different buttons
+    */
+    if(this.id == 'green'){
+      green.style.backgroundColor = "#00FF00";
+    }
+    else if(this.id == 'red'){
+      red.style.backgroundColor = "#FF0000";
+    }
+    else if(this.id == 'yellow'){
+      yellow.style.backgroundColor = "#FFFF00";
+    }
+    else if(this.id == 'blue'){
+      blue.style.backgroundColor = "#0000FF";
+    }
+  }
+})();
+
 var sequence = [];
 
 var start_game = function(){
