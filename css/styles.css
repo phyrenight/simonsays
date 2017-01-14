@@ -14,11 +14,14 @@ header {
   height: 5%;
   background-color: white; }
 
-.switch {
+#onOff {
   border: 1px solid black;
   width: 50%;
   height: 98%;
   background-color: #FF0000; }
+
+#onOff:active {
+  transformX: 5px; }
 
 section {
   height: 60%; }
