@@ -2,7 +2,7 @@
   var gameState = {
     gameEnd : 'false',
     randomSequence : [],
-    userSequence : [],
+    userSequence : 0,
     stage : 0,
     onOff : false
   };
@@ -49,6 +49,7 @@
     /*
       Used to light up the different buttons
     */
+
     if(this.id == 'green'){
       green.style.backgroundColor = "#00FF00";
     }
@@ -60,14 +61,16 @@
     }
     else if(this.id == 'blue'){
       blue.style.backgroundColor = "#0000FF";
+
     }
+    checkUserInput(this.id);
   }
 
   function startGame(){
     var i = 0;
     if(!gameState.onOff){
       while(i < 4){
-        gameState.randomSequence.push(random(0,4));
+        gameState.randomSequence.push(randomColor(0,4));
         i++;
         gameState.onOff = true;
       }
@@ -75,51 +78,71 @@
     else{
       gameState.onOff = false;
     }
+    console.log(gameState.randomSequence)
   }
 
-  var random = function(min, max){
+  var randomColor = function(min, max){
     var number = Math.floor(Math.random() * (max - min)) + 
       min;
-    return number;
+      if(number === 0){
+        return 'green';
+      }
+      else if(number === 1){
+        return 'red';
+      }
+      else if(number === 2){
+        return 'yellow';
+      }
+      else if(number === 3){
+        return 'blue';
+      }
   };
 
-  function checkUserInput(){
-    var numberOfUserInputs = gameState.UserSequence.length
-    console.log(numberOfUserInputs);
-
+  function checkUserInput(color){
+    if( color != gameState.randomSequence[gameState.userSequence]){
+      console.log(gameState.randomSequence[gameState.userSequence], color);
+    }
+    else{
+      gameState.userSequence += 1;
+    }
+    if(gameState.userSequence == gameState.randomSequence.length){
+      if(gameState.stage == 20){
+        var answer = prompt("You have won would you like to pplay again?(yes or no)");
+        if(answer == 'yes'){
+          startGame();
+        }
+      }
+      else{
+        gameState.userSequence = 0;
+        gameState.stage += 1;
+        gameState.randomSequence.push(randomColor(0,4));
+        console.log(gameState.randomSequence);
+      }
+    }
   }
-
+startGame()
 })();
 
 var activate_sequence = function(sequence){
-  var color = "";
-  var newColor = "";
   if(sequence.length > 3){
     for(var i in sequence){
-      if(sequence[i] === 0){
+      var newColor = " ";
+      if(sequence[i] == 'green'){
         //green
-        color = "green";
-        newColor = "";
-        lightUpButton(color, newColor);
+        lightUpButton(sequence[i], newColor);
         sleep();
       }
-      else if(sequence[i] == 1){
+      else if(sequence[i] == 'red'){
         // red
-        color = "red";
-        newColor = "";
-        lightUpButton(color, newColor);
+        lightUpButton(sequence[i], newColor);
       }
       else if(sequence[i] == 2){
         // yellow
-        color = "yellow";
-        newColor = "";
-        lightUpButton(color, newColor);
+        lightUpButton(sequence[i], newColor);
       }
       else if(sequence[i] == 3){
         // blue
-        color = "blue";
-        newColor = "";
-        lightUpButton(color, newColor);
+        lightUpButton(sequence[i], newColor);
       }
       else{
       	console.log("Error: Invalid number in activate_sequence");
