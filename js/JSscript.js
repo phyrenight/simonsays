@@ -78,10 +78,17 @@
     else{
       gameState.onOff = false;
     }
-    console.log(gameState.randomSequence)
+    activate_sequence();
+    //console.log(gameState.randomSequence)
   }
 
   var randomColor = function(min, max){
+    /*
+      args: min- min boundary for random generator
+            max- max boundary for random generator
+      generates a random number then assigns a color based on the that number.
+      returns: returns a string
+    */
     var number = Math.floor(Math.random() * (max - min)) + 
       min;
       if(number === 0){
@@ -99,6 +106,10 @@
   };
 
   function checkUserInput(color){
+    /*
+      args: color - the color of the button the user clicked on.
+      validates user choices
+    */
     if( color != gameState.randomSequence[gameState.userSequence]){
       console.log(gameState.randomSequence[gameState.userSequence], color);
     }
@@ -117,32 +128,31 @@
         gameState.stage += 1;
         gameState.randomSequence.push(randomColor(0,4));
         console.log(gameState.randomSequence);
+        activate_sequence();
       }
     }
   }
-startGame()
-})();
+startgame();
 
-var activate_sequence = function(sequence){
-  if(sequence.length > 3){
-    for(var i in sequence){
-      var newColor = " ";
-      if(sequence[i] == 'green'){
+var activate_sequence = function(){
+  if(gameState.randomSequence.length > 3){
+    for(var i in gameState.randomSequence){
+      if(gameState.randomSequence[i] == 'green'){
         //green
-        lightUpButton(sequence[i], newColor);
-        sleep();
+        lightUpButton(gameState.randomSequence[i], '#00FF00');
+        // sleep();
       }
-      else if(sequence[i] == 'red'){
+      else if(gameState.randomSequence[i] == 'red'){
         // red
-        lightUpButton(sequence[i], newColor);
+        lightUpButton(gameState.randomSequence[i], '#FF0000');
       }
-      else if(sequence[i] == 2){
+      else if(gameState.randomSequence[i] == 'yellow'){
         // yellow
-        lightUpButton(sequence[i], newColor);
+        lightUpButton(gameState.randomSequence[i], '#FFFF00');
       }
-      else if(sequence[i] == 3){
+      else if(gameState.randomSequence[i] == 'blue'){
         // blue
-        lightUpButton(sequence[i], newColor);
+        lightUpButton(gameState.randomSequence[i], '#0000FF');
       }
       else{
       	console.log("Error: Invalid number in activate_sequence");
@@ -150,7 +160,7 @@ var activate_sequence = function(sequence){
     }
   }
   else{
-  	start_game();
+  	startgame();
   }
 };
 
@@ -160,18 +170,22 @@ var lightUpButton = function(color, newColor){
           newColor - this will be a color that  will simulate the button lighting up
     lights up buttons according to the sequence provided    
   */
-  var div = document.getElementById(color);
-  var divOriginalColor = div.style.backgroundColor;
-  div.style.backgroundColor = "pink";
-  //setTimeout(function(){div.style.backgroundColor = divOriginalColor}, 3000) 
-  //sleep();
-  //div.style.backgroundColor =  divOriginalColor;
+      var div = document.getElementById(color);
+      div.style.backgroundColor = newColor;
+      setTimeout(function(){
+        div.style.backgroundColor = color
+        setTimeout(function(){
+          lightUpButton(color, newColor);
+        }, 3000);
+      }, 3000) 
+    //sleep();
 };
 
-
+})();
+/*
 var sleep = function(){
   /*
-  */
+  /
   var start = new Date().getTime();
   var milliseconds = 3000;
   var longNumber = 1000000000000000000;
@@ -182,3 +196,4 @@ var sleep = function(){
   	}
   }
 };
+*/
