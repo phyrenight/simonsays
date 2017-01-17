@@ -132,9 +132,8 @@
       }
     }
   }
-startgame();
 
-var activate_sequence = function(){
+var activate_sequence = function(){  //move this into lightUpButton 
   if(gameState.randomSequence.length > 3){
     for(var i in gameState.randomSequence){
       if(gameState.randomSequence[i] == 'green'){
@@ -160,7 +159,7 @@ var activate_sequence = function(){
     }
   }
   else{
-  	startgame();
+  	startGame();
   }
 };
 
@@ -180,7 +179,7 @@ var lightUpButton = function(color, newColor){
       }, 3000) 
     //sleep();
 };
-
+startGame();
 })();
 /*
 var sleep = function(){
