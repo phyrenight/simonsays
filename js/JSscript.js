@@ -116,12 +116,14 @@
     else{
       gameState.userSequence += 1;
     }
+    // include the all the items below in the above else
     if(gameState.userSequence == gameState.randomSequence.length){
       if(gameState.stage == 20){
         var answer = prompt("You have won would you like to pplay again?(yes or no)");
         if(answer == 'yes'){
           startGame();
         }
+        //set else to turn game off
       }
       else{
         gameState.userSequence = 0;
@@ -138,20 +140,19 @@ var activate_sequence = function(){  //move this into lightUpButton
     for(var i in gameState.randomSequence){
       if(gameState.randomSequence[i] == 'green'){
         //green
-        lightUpButton(gameState.randomSequence[i], '#00FF00');
-        // sleep();
+        lightUpButton(gameState.randomSequence[i], '#00FF00', '#00BB00');
       }
       else if(gameState.randomSequence[i] == 'red'){
         // red
-        lightUpButton(gameState.randomSequence[i], '#FF0000');
+        lightUpButton(gameState.randomSequence[i], '#FF0000', '#BB0000');
       }
       else if(gameState.randomSequence[i] == 'yellow'){
         // yellow
-        lightUpButton(gameState.randomSequence[i], '#FFFF00');
+        lightUpButton(gameState.randomSequence[i], '#FFFF00', '#BBBB00');
       }
       else if(gameState.randomSequence[i] == 'blue'){
         // blue
-        lightUpButton(gameState.randomSequence[i], '#0000FF');
+        lightUpButton(gameState.randomSequence[i], '#0000FF', '#0000BB');
       }
       else{
       	console.log("Error: Invalid number in activate_sequence");
@@ -163,36 +164,17 @@ var activate_sequence = function(){  //move this into lightUpButton
   }
 };
 
-var lightUpButton = function(color, newColor){
+var lightUpButton = function(divColor, newColor, color){
   /*
     args: color - id of the divs
           newColor - this will be a color that  will simulate the button lighting up
     lights up buttons according to the sequence provided    
   */
-      var div = document.getElementById(color);
+      var div = document.getElementById(divColor);
       div.style.backgroundColor = newColor;
       setTimeout(function(){
-        div.style.backgroundColor = color
-        setTimeout(function(){
-          lightUpButton(color, newColor);
-        }, 3000);
-      }, 3000) 
-    //sleep();
+        div.style.backgroundColor = color;
+      }, 3000);
 };
 startGame();
 })();
-/*
-var sleep = function(){
-  /*
-  /
-  var start = new Date().getTime();
-  var milliseconds = 3000;
-  var longNumber = 1000000000000000000;
-  for(var i = 0; i < longNumber; i++){
-  	if((new Date().getTime() - start) > milliseconds){
-  		console.log(new Date().getTime() - start);
-  		break;
-  	}
-  }
-};
-*/
