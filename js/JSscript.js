@@ -31,17 +31,19 @@
     /*
       changes the button color back to normal
     */
-    if(this.id == 'green'){
-      green.style.backgroundColor = '#00BB00';
-    }
-    else if(this.id == 'red'){
-      red.style.backgroundColor = '#BB0000';
-    }
-    else if(this.id == 'yellow'){
-      yellow.style.backgroundColor = '#BBBB00';
-    }
-    else if(this.id == 'blue'){
-      blue.style.backgroundColor = '#0000BB';
+    if(gameState.onOff){
+      if(this.id == 'green'){
+        green.style.backgroundColor = '#00BB00';
+      }
+      else if(this.id == 'red'){
+        red.style.backgroundColor = '#BB0000';
+      }
+      else if(this.id == 'yellow'){
+        yellow.style.backgroundColor = '#BBBB00';
+      }
+      else if(this.id == 'blue'){
+        blue.style.backgroundColor = '#0000BB';
+      }
     }
   }
 
@@ -49,24 +51,25 @@
     /*
       Used to light up the different buttons
     */
-
-    if(this.id == 'green'){
-      green.style.backgroundColor = "#00FF00";
+    if(gameState.onOff){
+      if(this.id == 'green'){
+        green.style.backgroundColor = "#00FF00";
+      }
+      else if(this.id == 'red'){
+        red.style.backgroundColor = "#FF0000";
+      }
+      else if(this.id == 'yellow'){
+        yellow.style.backgroundColor = "#FFFF00";
+      }
+      else if(this.id == 'blue'){
+        blue.style.backgroundColor = "#0000FF";
+      }
+      checkUserInput(this.id);
     }
-    else if(this.id == 'red'){
-      red.style.backgroundColor = "#FF0000";
-    }
-    else if(this.id == 'yellow'){
-      yellow.style.backgroundColor = "#FFFF00";
-    }
-    else if(this.id == 'blue'){
-      blue.style.backgroundColor = "#0000FF";
-
-    }
-    checkUserInput(this.id);
   }
 
   function startGame(){
+    console.log(gameState.onOff)
     var i = 0;
     if(!gameState.onOff){
       while(i < 4){
@@ -74,11 +77,14 @@
         i++;
         gameState.onOff = true;
       }
+      activate_sequence();
     }
     else{
       gameState.onOff = false;
+      gameState.stage = 0;
+      gameState.randomSequence = [];
+      gameState.userSequence = 0;
     }
-    activate_sequence();
     //console.log(gameState.randomSequence)
   }
 
@@ -129,7 +135,6 @@
         gameState.userSequence = 0;
         gameState.stage += 1;
         gameState.randomSequence.push(randomColor(0,4));
-        console.log(gameState.randomSequence);
         activate_sequence();
       }
     }
@@ -159,9 +164,9 @@ var activate_sequence = function(){  //move this into lightUpButton
       }
     }
   }
-  else{
-  	startGame();
-  }
+  //else{
+  //	startGame();
+ // }
 };
 
 var lightUpButton = function(divColor, newColor, color){
@@ -170,11 +175,17 @@ var lightUpButton = function(divColor, newColor, color){
           newColor - this will be a color that  will simulate the button lighting up
     lights up buttons according to the sequence provided    
   */
-      var div = document.getElementById(divColor);
-      div.style.backgroundColor = newColor;
+  if(gameState.onOff){
+    var div = document.getElementById(divColor);
+    div.style.backgroundColor = newColor;
+    var timer = function(){
+      var counter = 0;
       setTimeout(function(){
+        console.log(color)
         div.style.backgroundColor = color;
       }, 3000);
+    }
+  }
+  timer();
 };
-startGame();
 })();
