@@ -69,10 +69,9 @@
   }
 
   function startGame(){
-    console.log(gameState.onOff)
     var i = 0;
     if(!gameState.onOff){
-      while(i < 4){
+      while(i < 3){
         gameState.randomSequence.push(randomColor(0,4));
         i++;
         gameState.onOff = true;
@@ -117,7 +116,7 @@
       validates user choices
     */
     if( color != gameState.randomSequence[gameState.userSequence]){
-      console.log(gameState.randomSequence[gameState.userSequence], color);
+      //console.log(gameState.randomSequence[gameState.userSequence], color);
     }
     else{
       gameState.userSequence += 1;
@@ -140,52 +139,98 @@
     }
   }
 
-var activate_sequence = function(){  //move this into lightUpButton 
+var activate_sequence = function(light){  //move this into lightUpButton 
+    //callback(4000, divColor)
+    var div;
+    var color;
+    var timer = function(){
+      var counter = 0;
+      setTimeout(function(){
+        console.log(color)
+        div.style.backgroundColor = color;
+        //callback(4000)
+      }, 3000);
+    }
+  console.log(gameState.randomSequence)
+  console.log(gameState.stage)
   if(gameState.randomSequence.length > 3){
     for(var i in gameState.randomSequence){
       if(gameState.randomSequence[i] == 'green'){
         //green
-        lightUpButton(gameState.randomSequence[i], '#00FF00', '#00BB00');
+
+        div = document.getElementById(gameState.randomSequence[i]);
+        div.style.backgroundColor = '#00FF00';
+        color = '#00BB00';
+       // lightUpButton(gameState.randomSequence[i], '#00FF00', '#00BB00', sleep);
       }
       else if(gameState.randomSequence[i] == 'red'){
         // red
-        lightUpButton(gameState.randomSequence[i], '#FF0000', '#BB0000');
+        div = document.getElementById(gameState.randomSequence[i]);
+        div.style.backgroundColor = '#FF0000';
+        color = '#BB0000';
+        //lightUpButton(gameState.randomSequence[i], '#FF0000', '#BB0000', sleep);
       }
       else if(gameState.randomSequence[i] == 'yellow'){
         // yellow
-        lightUpButton(gameState.randomSequence[i], '#FFFF00', '#BBBB00');
+        div = document.getElementById(gameState.randomSequence[i]);
+        div.style.backgroundColor = '#FFFF00';
+        color = '#BBBB00';
+        //lightUpButton(gameState.randomSequence[i], '#FFFF00', '#BBBB00', sleep);
       }
       else if(gameState.randomSequence[i] == 'blue'){
         // blue
-        lightUpButton(gameState.randomSequence[i], '#0000FF', '#0000BB');
+        div = document.getElementById(gameState.randomSequence[i]);
+        div.style.backgroundColor = '#0000FF';
+        color = '#0000BB';
+        //lightUpButton(gameState.randomSequence[i], '#0000FF', '#0000BB', sleep);
       }
       else{
       	console.log("Error: Invalid number in activate_sequence");
       }
+      timer();
     }
+    //timer();
   }
+}
   //else{
   //	startGame();
  // }
-};
+// timer()
+//}
 
-var lightUpButton = function(divColor, newColor, color){
+var lightUpButton = function(divColor, newColor, color, callback){
   /*
     args: color - id of the divs
           newColor - this will be a color that  will simulate the button lighting up
     lights up buttons according to the sequence provided    
   */
   if(gameState.onOff){
+    //callback(4000, divColor)
     var div = document.getElementById(divColor);
     div.style.backgroundColor = newColor;
     var timer = function(){
       var counter = 0;
       setTimeout(function(){
         console.log(color)
+
         div.style.backgroundColor = color;
+        //callback(4000)
       }, 3000);
     }
   }
   timer();
 };
+
+
+var sleep = function(milliseconds){
+ // var div = document.getElementById(divColor);
+  var start = new Date().getTime();
+  for(var i = 0; i < 4e7; i++){
+    if((new Date().getTime() - start) > milliseconds){
+      console.log("hi")
+      //div.style.backgroundColor = newColor;
+      break;
+    }
+  }
+}
 })();
