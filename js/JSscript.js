@@ -69,6 +69,7 @@
   }
 
   function startGame(){
+    // sets up random pattern and starts game
     var i = 0;
     if(!gameState.onOff){
       while(i < 3){
@@ -116,6 +117,10 @@
       validates user choices
     */
     if( color != gameState.randomSequence[gameState.userSequence]){
+      alert("Game Over!");
+      gameState.randomSequence = [];
+      gameState.stage = 0;
+      gameState.userSequence = 0;
       //console.log(gameState.randomSequence[gameState.userSequence], color);
     }
     else{
@@ -141,62 +146,55 @@
 
 var activate_sequence = function(light){  //move this into lightUpButton 
     //callback(4000, divColor)
-    var div;
+   /* var div;
     var color;
-    var timer = function(){
+    var timer = function(sleep){
       var counter = 0;
       setTimeout(function(){
         console.log(color)
         div.style.backgroundColor = color;
         //callback(4000)
       }, 3000);
-    }
+      callback(4000);
+    }*/
   console.log(gameState.randomSequence)
   console.log(gameState.stage)
-  if(gameState.randomSequence.length > 3){
-    for(var i in gameState.randomSequence){
-      if(gameState.randomSequence[i] == 'green'){
-        //green
+  if(gameState.randomSequence.length >= 3){
+    setTimeout(function(){
+      for(var i in gameState.randomSequence){
+        if(gameState.randomSequence[i] == 'green'){
+          //green
 
-        div = document.getElementById(gameState.randomSequence[i]);
-        div.style.backgroundColor = '#00FF00';
-        color = '#00BB00';
-       // lightUpButton(gameState.randomSequence[i], '#00FF00', '#00BB00', sleep);
+          // div = document.getElementById(gameState.randomSequence[i]);
+          //div.style.backgroundColor = '#00FF00';
+          //color = '#00BB00';
+          lightUpButton(gameState.randomSequence[i], '#00FF00', '#00BB00', sleep);
+        }else if(gameState.randomSequence[i] == 'red'){
+          // red
+          // div = document.getElementById(gameState.randomSequence[i]);
+          //div.style.backgroundColor = '#FF0000';
+          //color = '#BB0000';
+          lightUpButton(gameState.randomSequence[i], '#FF0000', '#BB0000', sleep);
+        }else if(gameState.randomSequence[i] == 'yellow'){
+          // yellow
+          //div = document.getElementById(gameState.randomSequence[i]);
+          //div.style.backgroundColor = '#FFFF00';
+          //color = '#BBBB00';
+          lightUpButton(gameState.randomSequence[i], '#FFFF00', '#BBBB00', sleep);
+        }else if(gameState.randomSequence[i] == 'blue'){
+          // blue
+          //div = document.getElementById(gameState.randomSequence[i]);
+          //div.style.backgroundColor = '#0000FF';
+          //color = '#0000BB';
+          lightUpButton(gameState.randomSequence[i], '#0000FF', '#0000BB', sleep);
+        }else{
+      	  console.log("Error: Invalid number in activate_sequence");
+        }
       }
-      else if(gameState.randomSequence[i] == 'red'){
-        // red
-        div = document.getElementById(gameState.randomSequence[i]);
-        div.style.backgroundColor = '#FF0000';
-        color = '#BB0000';
-        //lightUpButton(gameState.randomSequence[i], '#FF0000', '#BB0000', sleep);
-      }
-      else if(gameState.randomSequence[i] == 'yellow'){
-        // yellow
-        div = document.getElementById(gameState.randomSequence[i]);
-        div.style.backgroundColor = '#FFFF00';
-        color = '#BBBB00';
-        //lightUpButton(gameState.randomSequence[i], '#FFFF00', '#BBBB00', sleep);
-      }
-      else if(gameState.randomSequence[i] == 'blue'){
-        // blue
-        div = document.getElementById(gameState.randomSequence[i]);
-        div.style.backgroundColor = '#0000FF';
-        color = '#0000BB';
-        //lightUpButton(gameState.randomSequence[i], '#0000FF', '#0000BB', sleep);
-      }
-      else{
-      	console.log("Error: Invalid number in activate_sequence");
-      }
-      timer();
-    }
-    //timer();
+    }, 1000);
   }
 }
-  //else{
-  //	startGame();
- // }
-// timer()
-//}
+
 
 var lightUpButton = function(divColor, newColor, color, callback){
   /*
