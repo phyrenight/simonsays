@@ -4,7 +4,9 @@
     randomSequence : [],
     userSequence : 0,
     stage : 0,
-    onOff : false
+    onOff : false,
+    strict: false,
+    strictCount: 0
   };
 
   var green = document.getElementById('green');
@@ -12,6 +14,7 @@
   var yellow = document.getElementById('yellow');
   var blue = document.getElementById('blue');
   var onOff = document.getElementById('onOff');
+  var strict = document.getElementById('strict');
 
   blue.addEventListener('mousedown', lightUpColor, false);
   blue.addEventListener('mouseup', backToNormal, false);
@@ -26,6 +29,7 @@
   green.addEventListener('mouseup', backToNormal, false);
   
   onOff.addEventListener('click', startGame, false);
+  strict.addEventListener('click', strictMode, false);
 
   function backToNormal(){
     /*
@@ -65,6 +69,14 @@
         blue.style.backgroundColor = "#0000FF";
       }
       checkUserInput(this.id);
+    }
+  }
+
+  function strictMode(){
+    if(gameState.strict){
+      gameState.strict = true;
+    }else{
+      gameState.strict = false;
     }
   }
 
@@ -117,11 +129,17 @@
       validates user choices
     */
     if( color != gameState.randomSequence[gameState.userSequence]){
-      alert("Game Over!");
-      gameState.randomSequence = [];
-      gameState.stage = 0;
-      gameState.userSequence = 0;
-      //console.log(gameState.randomSequence[gameState.userSequence], color);
+      if(gameState.strict && gameState.strictCounter != 0){
+        gameState.userSequence = 0;
+        activate_sequence();
+        gameState.strictCounter++;
+      }else{
+        alert("Game Over!");
+        gameState.randomSequence = [];
+        gameState.stage = 0;
+        gameState.userSequence = 0;
+        //console.log(gameState.randomSequence[gameState.userSequence], color);
+      }
     }
     else{
       gameState.userSequence += 1;
@@ -140,6 +158,7 @@
         gameState.stage += 1;
         gameState.randomSequence.push(randomColor(0,4));
         activate_sequence();
+        gameState.strictCounter = 0;
       }
     }
   }
@@ -177,11 +196,8 @@ var lightUpButton = function(divColor, newColor, color, callback, counter){
   */
   if(gameState.onOff){
     var div = document.getElementById(divColor);
-   // var timer = function(){
-     // var counter = 1;
       setTimeout(function(){
-        div.style.backgroundColor = 'white';//newColor;
-       console.log(counter)
+        div.style.backgroundColor = newColor;
        callback(color, divColor);
        counter++;
       }, 100 + ((counter+1)*100));
@@ -191,7 +207,6 @@ var lightUpButton = function(divColor, newColor, color, callback, counter){
 
 var sleep = function( color, divColor){
   var div = document.getElementById(divColor);
-  console.log("PPPPPPP")
   setTimeout(function(){
     div.style.backgroundColor = color;
   }, 800)
