@@ -108,12 +108,11 @@ div.red {
   background-color: #0000BB; }
 
 @media (min-width: 700px) {
-  h1 {
+  header h1 {
     margin: 0;
-    font-size: 3em; }
-
-  header h2 {
     font-size: 2em; }
+  header h2 {
+    font-size: 1em; }
 
   #onOffContainer, #strictContainer {
     display: inline-block;
@@ -131,10 +130,7 @@ div.red {
   #onOff, #strict {
     width: 50%;
     height: 90%; }
-
-  #stage {
-    display: inline-block; }
-    #stage h2 {
+    #onOff h2, #strict h2 {
       margin-top: 0;
       margin-bottom: 5px; }
 
@@ -144,10 +140,8 @@ div.red {
     #stageCount #number {
       font-size: 30px; }
 
-  section {
-    display: inline-block;
+  #container {
     height: 30%;
-    width: 40%;
-    margin: auto; } }
+    width: 40%; } }
 
 /*# sourceMappingURL=styles.css.map */
