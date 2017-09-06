@@ -19,12 +19,18 @@ header {
 
 #onOffContainer, #strictContainer {
   display: inline-block;
-  margin: 0 10%; }
+  margin: 0 10%;
+  width: 200px;
+  height: 150px; }
 
 .switchbox, .strictbox {
   width: 170px;
   height: 100px;
-  background-color: black; }
+  background-color: black;
+  position: relative; }
+
+input {
+  display: none; }
 
 #onOff, #strict {
   border: 1px solid black;
@@ -32,10 +38,44 @@ header {
   height: 98%;
   background-color: #FF0000; }
 
-#tens, #ones {
+#onOff {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: 4s;
+  transition: 4s; }
+
+#onOff:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  -webkit-transition: 4s;
+  transition: 4s; }
+
+input:checked + #onoff:before {
+  -webkit-transition: 4s;
+  transition: 4s;
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+#stage h2 {
+  display: block; }
+
+#stageCount {
   width: 20%;
-  height: 20%;
-  border: 1px solid black; }
+  height: 100px;
+  border: 1px solid black;
+  display: inline-block;
+  font-size: 80px; }
+
+#number {
+  margin: 0; }
 
 section {
   height: 60%;
@@ -66,5 +106,13 @@ div.red {
 
 .blue {
   background-color: #0000BB; }
+
+@media (min-width: 720px) {
+  h1 {
+    margin-bottom: 0;
+    font-size: 3em; }
+
+  header h2 {
+    font-size: 2em; } }
 
 /*# sourceMappingURL=styles.css.map */

@@ -16,17 +16,17 @@
   var onOff = document.getElementById('onOff');
   var strict = document.getElementById('strict');
 
-  blue.addEventListener('mousedown', lightUpColor, false);
-  blue.addEventListener('mouseup', backToNormal, false);
+  blue.addEventListener('pointerdown', lightUpColor);
+  blue.addEventListener('pointerup', backToNormal);
   
-  red.addEventListener('mousedown', lightUpColor, false);
-  red.addEventListener('mouseup', backToNormal, false);
+  red.addEventListener('pointerdown', lightUpColor);
+  red.addEventListener('pointerup', backToNormal);
   
-  yellow.addEventListener('mousedown', lightUpColor, false);
-  yellow.addEventListener('mouseup', backToNormal, false);
+  yellow.addEventListener('pointerdown', lightUpColor);
+  yellow.addEventListener('pointerup', backToNormal);
   
-  green.addEventListener('mousedown', lightUpColor, false);
-  green.addEventListener('mouseup', backToNormal, false);
+  green.addEventListener('pointerdown', lightUpColor);
+  green.addEventListener('pointerup', backToNormal);
   
   onOff.addEventListener('click', startGame, false);
   strict.addEventListener('click', strictMode, false);
@@ -72,6 +72,11 @@
     }
   }
 
+  function displayStage(){
+    var div = document.getElementById('number');
+    div.innerHTML = gameState.stage;
+  }
+
   function strictMode(){
     if(gameState.strict){
       gameState.strict = true;
@@ -82,6 +87,7 @@
 
   function startGame(){
     // sets up random pattern and starts game
+    displayStage();
     var i = 0;
     if(!gameState.onOff){
       while(i < 3){
@@ -132,7 +138,10 @@
       if(gameState.strict && gameState.strictCounter != 0){
         gameState.userSequence = 0;
         activate_sequence();
+        console.log(gameState.userSequence)
+        console.log(gameState.strict)
         gameState.strictCounter++;
+        displayStage();
       }else{
         alert("Game Over!");
         gameState.randomSequence = [];
@@ -143,12 +152,14 @@
     }
     else{
       gameState.userSequence += 1;
+      displayStage();
     }
     // include the all the items below in the above else
     if(gameState.userSequence == gameState.randomSequence.length){
       if(gameState.stage == 20){
         var answer = prompt("You have won would you like to pplay again?(yes or no)");
         if(answer == 'yes'){
+          displayStage();
           startGame();
         }
         //set else to turn game off
@@ -159,6 +170,7 @@
         gameState.randomSequence.push(randomColor(0,4));
         activate_sequence();
         gameState.strictCounter = 0;
+        displayStage();
       }
     }
   }
