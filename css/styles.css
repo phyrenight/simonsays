@@ -26,7 +26,7 @@ header {
   height: 70px; }
 
 .switchbox, .strictbox {
-  width: 80px;
+  width: 54px;
   height: 28px;
   position: relative;
   display: inline-block; }
@@ -37,7 +37,7 @@ input {
 
 #onOff, #strict {
   border: 1px solid black;
-  width: 68%;
+  width: 100%;
   height: 100%;
   top: 0;
   right: 0;
@@ -121,80 +121,31 @@ div.red {
   header h2 {
     font-size: 1em; }
 
-  #onOffContainer, #strictContainer {
-    display: inline-block;
-    margin: 0 10%;
-    width: 200px;
-    height: 120px; }
-
   .switchbox, .strictbox {
-    width: 80px;
-    height: 26px;
-    background-color: black;
-    position: relative;
     margin: 0 auto; }
-
-  #onOff, #strict {
-    width: 50%;
-    height: 90%; }
-    #onOff h2, #strict h2 {
+    .switchbox h2, .strictbox h2 {
       margin-top: 0;
       margin-bottom: 5px; }
 
-  #stageCount {
-    height: 32px;
-    width: 56px; }
-    #stageCount #number {
-      font-size: 30px; }
+  section {
+    height: 40%;
+    bottom: 88px; }
 
   #container {
     height: 55%;
     width: 57%;
     border-radius: 50%;
-    margin: 68px auto;
-    overflow: hidden; }
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 3px 3px 0.4em #000; }
     #container .colorButtons {
       width: 50%; } }
 @media (min-width: 674px) {
-  header h1 {
-    margin: 0;
-    font-size: 2em; }
-  header h2 {
-    font-size: 1em; }
-
-  #onOffContainer, #strictContainer {
-    display: inline-block;
-    margin: 0 10%;
-    width: 200px;
-    height: 120px; }
-
-  .switchbox, .strictbox {
-    width: 80px;
-    height: 26px;
-    background-color: black;
-    position: relative;
-    margin: 0 auto; }
-
-  #onOff, #strict {
-    width: 50%;
-    height: 90%; }
-    #onOff h2, #strict h2 {
-      margin-top: 0;
-      margin-bottom: 5px; }
-
-  #stageCount {
-    height: 32px;
-    width: 56px; }
-    #stageCount #number {
-      font-size: 30px; }
-
   #container {
-    height: 55%;
-    width: 57%;
+    width: 384px;
+    height: 263px;
     border-radius: 50%;
-    margin: 68px auto;
-    overflow: hidden; }
-    #container .colorButtons {
-      width: 50%; } }
+    margin: auto;
+    overflow: hidden; } }
 
 /*# sourceMappingURL=styles.css.map */
