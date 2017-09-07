@@ -12,54 +12,54 @@ header {
   height: 37%;
   text-align: center; }
   header h1 {
-    font-size: 4em; }
+    margin-top: 0;
+    font-size: 2em; }
   header h2 {
-    font-size: 3em;
-    display: inline-block; }
+    margin-top: 0;
+    font-size: 1em;
+    display: block; }
 
 #onOffContainer, #strictContainer {
   display: inline-block;
-  margin: 0 10%;
-  width: 200px;
-  height: 150px; }
+  margin: 0;
+  width: 90px;
+  height: 70px; }
 
 .switchbox, .strictbox {
-  width: 170px;
-  height: 100px;
-  background-color: black;
-  position: relative; }
+  width: 80px;
+  height: 28px;
+  position: relative;
+  display: inline-block; }
 
 input {
-  display: none; }
+  display: none;
+  position: absolute; }
 
 #onOff, #strict {
   border: 1px solid black;
-  width: 50%;
-  height: 98%;
-  background-color: #FF0000; }
-
-#onOff {
-  position: absolute;
+  width: 68%;
+  height: 100%;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transition: 4s;
-  transition: 4s; }
+  left: 0;
+  background-color: #000000;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
 
-#onOff:before {
+#onOff:before, #strict:before {
   position: absolute;
   content: "";
   height: 26px;
   width: 26px;
-  left: 4px;
-  bottom: 4px;
-  -webkit-transition: 4s;
-  transition: 4s; }
+  left: 1px;
+  bottom: 1px;
+  background-color: red;
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
 
-input:checked + #onoff:before {
-  -webkit-transition: 4s;
-  transition: 4s;
+input:checked + #onOff:before, input:checked + #strict:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px); }
@@ -68,13 +68,14 @@ input:checked + #onoff:before {
   display: block; }
 
 #stageCount {
-  width: 20%;
-  height: 100px;
-  border: 1px solid black;
+  width: 56px;
+  height: 32px;
   display: inline-block;
-  font-size: 80px; }
+  font-size: 80px;
+  border: 1px solid black; }
 
 #number {
+  font-size: 30px;
   margin: 0; }
 
 section {
@@ -82,12 +83,15 @@ section {
   text-align: center;
   width: 100%;
   position: absolute;
-  bottom: 0; }
-
-section div {
-  display: block;
-  height: 50%;
-  width: 100%; }
+  bottom: 3px; }
+  section #container {
+    height: 100%; }
+  section .row {
+    height: 50%; }
+  section div {
+    display: block;
+    height: 50%;
+    width: 100%; }
 
 .colorButtons {
   display: inline-block;
@@ -107,7 +111,10 @@ div.red {
 .blue {
   background-color: #0000BB; }
 
-@media (min-width: 700px) {
+@media (min-width: 400px) {
+  #onOffContainer, #strictContainer {
+    margin: 0; }
+
   header h1 {
     margin: 0;
     font-size: 2em; }
@@ -141,7 +148,53 @@ div.red {
       font-size: 30px; }
 
   #container {
-    height: 30%;
-    width: 40%; } }
+    height: 55%;
+    width: 57%;
+    border-radius: 50%;
+    margin: 68px auto;
+    overflow: hidden; }
+    #container .colorButtons {
+      width: 50%; } }
+@media (min-width: 674px) {
+  header h1 {
+    margin: 0;
+    font-size: 2em; }
+  header h2 {
+    font-size: 1em; }
+
+  #onOffContainer, #strictContainer {
+    display: inline-block;
+    margin: 0 10%;
+    width: 200px;
+    height: 120px; }
+
+  .switchbox, .strictbox {
+    width: 80px;
+    height: 26px;
+    background-color: black;
+    position: relative;
+    margin: 0 auto; }
+
+  #onOff, #strict {
+    width: 50%;
+    height: 90%; }
+    #onOff h2, #strict h2 {
+      margin-top: 0;
+      margin-bottom: 5px; }
+
+  #stageCount {
+    height: 32px;
+    width: 56px; }
+    #stageCount #number {
+      font-size: 30px; }
+
+  #container {
+    height: 55%;
+    width: 57%;
+    border-radius: 50%;
+    margin: 68px auto;
+    overflow: hidden; }
+    #container .colorButtons {
+      width: 50%; } }
 
 /*# sourceMappingURL=styles.css.map */
